@@ -35,11 +35,13 @@
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.BtnSearch = new MetroFramework.Controls.MetroButton();
             this.DgvStocks = new System.Windows.Forms.DataGridView();
-            this.ISIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ISSUDT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.KORSECNAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SECNKACDNM = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SHOTNISIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kosNm = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kosType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.kosTxt = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.img = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txt2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -115,11 +117,13 @@
             this.DgvStocks.AllowUserToDeleteRows = false;
             this.DgvStocks.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgvStocks.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.ISIN,
-            this.ISSUDT,
-            this.KORSECNAME,
-            this.SECNKACDNM,
-            this.SHOTNISIN});
+            this.kosNm,
+            this.kosType,
+            this.kosTxt,
+            this.img,
+            this.txt1,
+            this.title,
+            this.txt2});
             this.DgvStocks.Location = new System.Drawing.Point(3, 3);
             this.DgvStocks.Name = "DgvStocks";
             this.DgvStocks.ReadOnly = true;
@@ -127,48 +131,67 @@
             this.DgvStocks.RowTemplate.Height = 24;
             this.DgvStocks.Size = new System.Drawing.Size(1214, 494);
             this.DgvStocks.TabIndex = 0;
+            this.DgvStocks.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvStocks_CellDoubleClick);
             // 
-            // ISIN
+            // kosNm
             // 
-            this.ISIN.HeaderText = "표준코드";
-            this.ISIN.MinimumWidth = 6;
-            this.ISIN.Name = "ISIN";
-            this.ISIN.ReadOnly = true;
-            this.ISIN.Width = 150;
+            this.kosNm.HeaderText = "코스명";
+            this.kosNm.MinimumWidth = 6;
+            this.kosNm.Name = "kosNm";
+            this.kosNm.ReadOnly = true;
+            this.kosNm.Width = 90;
             // 
-            // ISSUDT
+            // kosType
             // 
-            this.ISSUDT.HeaderText = "주식발행일자";
-            this.ISSUDT.MinimumWidth = 6;
-            this.ISSUDT.Name = "ISSUDT";
-            this.ISSUDT.ReadOnly = true;
-            this.ISSUDT.Width = 200;
+            this.kosType.HeaderText = "코스종류";
+            this.kosType.MinimumWidth = 6;
+            this.kosType.Name = "kosType";
+            this.kosType.ReadOnly = true;
+            this.kosType.Width = 200;
             // 
-            // KORSECNAME
+            // kosTxt
             // 
-            this.KORSECNAME.HeaderText = "한글종목명";
-            this.KORSECNAME.MinimumWidth = 6;
-            this.KORSECNAME.Name = "KORSECNAME";
-            this.KORSECNAME.ReadOnly = true;
-            this.KORSECNAME.Width = 300;
+            this.kosTxt.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.kosTxt.HeaderText = "상세코스";
+            this.kosTxt.MinimumWidth = 6;
+            this.kosTxt.Name = "kosTxt";
+            this.kosTxt.ReadOnly = true;
+            this.kosTxt.Width = 109;
             // 
-            // SECNKACDNM
+            // img
             // 
-            this.SECNKACDNM.HeaderText = "보통주/우선주";
-            this.SECNKACDNM.MinimumWidth = 6;
-            this.SECNKACDNM.Name = "SECNKACDNM";
-            this.SECNKACDNM.ReadOnly = true;
-            this.SECNKACDNM.Width = 250;
+            this.img.HeaderText = "이미지";
+            this.img.MinimumWidth = 6;
+            this.img.Name = "img";
+            this.img.ReadOnly = true;
+            this.img.Width = 250;
             // 
-            // SHOTNISIN
+            // txt1
             // 
-            this.SHOTNISIN.HeaderText = "단축코드";
-            this.SHOTNISIN.MinimumWidth = 6;
-            this.SHOTNISIN.Name = "SHOTNISIN";
-            this.SHOTNISIN.ReadOnly = true;
-            this.SHOTNISIN.Width = 150;
+            this.txt1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.txt1.HeaderText = "소요시간";
+            this.txt1.MinimumWidth = 6;
+            this.txt1.Name = "txt1";
+            this.txt1.ReadOnly = true;
+            this.txt1.Width = 109;
             // 
-            // GaletgilCourseForm
+            // title
+            // 
+            this.title.HeaderText = "타이틀";
+            this.title.MinimumWidth = 6;
+            this.title.Name = "title";
+            this.title.ReadOnly = true;
+            this.title.Width = 110;
+            // 
+            // txt2
+            // 
+            this.txt2.HeaderText = "레벨";
+            this.txt2.MinimumWidth = 6;
+            this.txt2.Name = "txt2";
+            this.txt2.ReadOnly = true;
+            this.txt2.Width = 80;
+            // 
+            // GalmetgilCourseForm
             // 
             this.ClientSize = new System.Drawing.Size(1280, 720);
             this.Controls.Add(this.metroTabControl1);
@@ -176,7 +199,7 @@
             this.Font = new System.Drawing.Font("나눔고딕", 12.90566F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "GaletgilCourseForm";
+            this.Name = "GalmetgilCourseForm";
             this.Resizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "갈맷길코스 조회";
@@ -202,11 +225,13 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private MetroFramework.Controls.MetroButton BtnSearch;
         private System.Windows.Forms.DataGridView DgvStocks;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ISIN;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ISSUDT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn KORSECNAME;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SECNKACDNM;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SHOTNISIN;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kosNm;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kosType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn kosTxt;
+        private System.Windows.Forms.DataGridViewTextBoxColumn img;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txt1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn title;
+        private System.Windows.Forms.DataGridViewTextBoxColumn txt2;
     }
 }
 

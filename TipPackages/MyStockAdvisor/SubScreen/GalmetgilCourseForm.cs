@@ -4,9 +4,8 @@ using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
 using System.Net;
-using System.Xml;
 using Newtonsoft.Json.Linq;
-using Newtonsoft.Json;
+using MyStockAdvisor.SubScreen;
 
 namespace MyStockAdvisor
 {
@@ -64,20 +63,30 @@ namespace MyStockAdvisor
             //var items = obj.SelectToken("item");
             var items = JArray.Parse(obj.SelectToken("getGalmaetGilInfo.item").ToString());
 
-            foreach (var item in items)
-            {
-                // TODO
-                System.Diagnostics.Debug.WriteLine(item);
-            }
             DgvStocks.Rows.Clear();
 
-            //foreach (XmlNode item in items)
-            //{
-            //    DgvStocks.Rows.Add(item["isin"].InnerText, item["issuDt"].InnerText, 
-            //        item["korSecnNm"].InnerText, item["secnKacdNm"].InnerText, item["shotnIsin"].InnerText);
-            //}
-
+            foreach (JToken item in items)
+            {
+                // 7개 값  kosNm, kosType, kosTxt, img, txt1, title, txt2
+                DgvStocks.Rows.Add(item.SelectToken("kosNm").ToString(),
+                                   item.SelectToken("kosType").ToString(),
+                                   item.SelectToken("kosTxt").ToString(),
+                                   item.SelectToken("img").ToString(),
+                                   item.SelectToken("txt1").ToString(),
+                                   item.SelectToken("title").ToString(),
+                                   item.SelectToken("txt2").ToString());
+            }
+            
             DgvStocks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+        }
+
+        private void DgvStocks_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var selvalue = DgvStocks.Rows[e.RowIndex].Cells[3].Value.ToString();
+            //MessageBox.Show(selvalue);
+            WebScreen screen = new WebScreen();
+            screen.ParentUrl = selvalue;
+            screen.ShowDialog();
         }
     }
 }

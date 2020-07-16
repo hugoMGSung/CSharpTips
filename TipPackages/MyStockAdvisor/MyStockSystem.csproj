@@ -12,6 +12,8 @@
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -65,6 +67,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +100,12 @@
     <Compile Include="SubScreen\SearchItemForm.Designer.cs">
       <DependentUpon>SearchItemForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SubScreen\WebScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubScreen\WebScreen.Designer.cs">
+      <DependentUpon>WebScreen.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SubScreen\SearchItemForm.resx">
       <DependentUpon>SearchItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SubScreen\WebScreen.resx">
+      <DependentUpon>WebScreen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
