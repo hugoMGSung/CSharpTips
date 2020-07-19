@@ -34,8 +34,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.ChtMain = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
-            this.BtnYValues = new MetroFramework.Controls.MetroButton();
+            this.BtnDbBinding = new MetroFramework.Controls.MetroButton();
+            this.BtnData = new MetroFramework.Controls.MetroButton();
             this.BtnXyValues = new MetroFramework.Controls.MetroButton();
+            this.BtnYValues = new MetroFramework.Controls.MetroButton();
+            this.BtnMultiChart = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.ChtMain)).BeginInit();
             this.metroPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -50,7 +53,7 @@
             this.ChtMain.Name = "ChtMain";
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
-            series1.Name = "Score";
+            series1.Name = "Salary";
             this.ChtMain.Series.Add(series1);
             this.ChtMain.Size = new System.Drawing.Size(880, 634);
             this.ChtMain.TabIndex = 0;
@@ -58,6 +61,9 @@
             // 
             // metroPanel1
             // 
+            this.metroPanel1.Controls.Add(this.BtnMultiChart);
+            this.metroPanel1.Controls.Add(this.BtnDbBinding);
+            this.metroPanel1.Controls.Add(this.BtnData);
             this.metroPanel1.Controls.Add(this.BtnXyValues);
             this.metroPanel1.Controls.Add(this.BtnYValues);
             this.metroPanel1.HorizontalScrollbarBarColor = true;
@@ -71,15 +77,25 @@
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
             // 
-            // BtnYValues
+            // BtnDbBinding
             // 
-            this.BtnYValues.Location = new System.Drawing.Point(205, 3);
-            this.BtnYValues.Name = "BtnYValues";
-            this.BtnYValues.Size = new System.Drawing.Size(140, 50);
-            this.BtnYValues.TabIndex = 2;
-            this.BtnYValues.Text = "Only V Values";
-            this.BtnYValues.UseSelectable = true;
-            this.BtnYValues.Click += new System.EventHandler(this.BtnYValues_Click);
+            this.BtnDbBinding.Location = new System.Drawing.Point(205, 260);
+            this.BtnDbBinding.Name = "BtnDbBinding";
+            this.BtnDbBinding.Size = new System.Drawing.Size(140, 50);
+            this.BtnDbBinding.TabIndex = 2;
+            this.BtnDbBinding.Text = "DB Binding";
+            this.BtnDbBinding.UseSelectable = true;
+            this.BtnDbBinding.Click += new System.EventHandler(this.BtnDbBinding_Click);
+            // 
+            // BtnData
+            // 
+            this.BtnData.Location = new System.Drawing.Point(205, 128);
+            this.BtnData.Name = "BtnData";
+            this.BtnData.Size = new System.Drawing.Size(140, 50);
+            this.BtnData.TabIndex = 2;
+            this.BtnData.Text = "List DATA";
+            this.BtnData.UseSelectable = true;
+            this.BtnData.Click += new System.EventHandler(this.BtnData_Click);
             // 
             // BtnXyValues
             // 
@@ -90,6 +106,26 @@
             this.BtnXyValues.Text = "XY Values";
             this.BtnXyValues.UseSelectable = true;
             this.BtnXyValues.Click += new System.EventHandler(this.BtnXyValues_Click);
+            // 
+            // BtnYValues
+            // 
+            this.BtnYValues.Location = new System.Drawing.Point(205, 3);
+            this.BtnYValues.Name = "BtnYValues";
+            this.BtnYValues.Size = new System.Drawing.Size(140, 50);
+            this.BtnYValues.TabIndex = 2;
+            this.BtnYValues.Text = "Only V Values";
+            this.BtnYValues.UseSelectable = true;
+            this.BtnYValues.Click += new System.EventHandler(this.BtnYValues_Click);
+            // 
+            // BtnMultiChart
+            // 
+            this.BtnMultiChart.Location = new System.Drawing.Point(205, 184);
+            this.BtnMultiChart.Name = "BtnMultiChart";
+            this.BtnMultiChart.Size = new System.Drawing.Size(140, 50);
+            this.BtnMultiChart.TabIndex = 2;
+            this.BtnMultiChart.Text = "Multi Chart";
+            this.BtnMultiChart.UseSelectable = true;
+            this.BtnMultiChart.Click += new System.EventHandler(this.BtnMultiChart_Click);
             // 
             // MainForm
             // 
@@ -115,6 +151,9 @@
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private MetroFramework.Controls.MetroButton BtnXyValues;
         private MetroFramework.Controls.MetroButton BtnYValues;
+        private MetroFramework.Controls.MetroButton BtnData;
+        private MetroFramework.Controls.MetroButton BtnDbBinding;
+        private MetroFramework.Controls.MetroButton BtnMultiChart;
     }
 }
 

@@ -82,6 +82,12 @@
     <Compile Include="SubScreen\HealthInfoForm.Designer.cs">
       <DependentUpon>HealthInfoForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="SubScreen\LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SubScreen\LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SubScreen\SearchAddressForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +128,9 @@
     <EmbeddedResource Include="SubScreen\HealthInfoForm.resx">
       <DependentUpon>HealthInfoForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SubScreen\LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SubScreen\SearchAddressForm.resx">
       <DependentUpon>SearchAddressForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -158,6 +167,7 @@
     <None Include="Resources\feather2.png" />
     <None Include="Resources\map2.png" />
     <None Include="Resources\cross2.png" />
+    <Content Include="Resources\loading.gif" />
     <Content Include="stocks.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

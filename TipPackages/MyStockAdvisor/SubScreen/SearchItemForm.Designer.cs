@@ -29,19 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchItemForm));
-            this.MtlBack = new MetroFramework.Controls.MetroTile();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.metroTabPage1 = new MetroFramework.Controls.MetroTabPage();
-            this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.TxtSearchItem = new MetroFramework.Controls.MetroTextBox();
             this.BtnSearch = new MetroFramework.Controls.MetroButton();
+            this.TxtSearchItem = new MetroFramework.Controls.MetroTextBox();
             this.DgvStocks = new System.Windows.Forms.DataGridView();
             this.ISIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ISSUDT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.KORSECNAME = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SECNKACDNM = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SHOTNISIN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.metroTabPage2 = new MetroFramework.Controls.MetroTabPage();
+            this.MtlBack = new MetroFramework.Controls.MetroTile();
             this.metroTabControl1.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -50,17 +50,6 @@
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvStocks)).BeginInit();
             this.SuspendLayout();
-            // 
-            // MtlBack
-            // 
-            this.MtlBack.Location = new System.Drawing.Point(1197, 657);
-            this.MtlBack.Name = "MtlBack";
-            this.MtlBack.Size = new System.Drawing.Size(60, 40);
-            this.MtlBack.TabIndex = 2;
-            this.MtlBack.TileImage = global::MyStockAdvisor.Properties.Resources.back2;
-            this.MtlBack.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.MtlBack.UseTileImage = true;
-            this.MtlBack.Click += new System.EventHandler(this.MtlBack_Click);
             // 
             // metroTabControl1
             // 
@@ -83,16 +72,6 @@
             this.metroTabPage1.Text = "주식기조정보수집";
             this.metroTabPage1.VerticalScrollbarBarColor = true;
             // 
-            // metroTabPage2
-            // 
-            this.metroTabPage2.HorizontalScrollbarBarColor = true;
-            this.metroTabPage2.Location = new System.Drawing.Point(4, 36);
-            this.metroTabPage2.Name = "metroTabPage2";
-            this.metroTabPage2.Size = new System.Drawing.Size(192, 60);
-            this.metroTabPage2.TabIndex = 1;
-            this.metroTabPage2.Text = "해당정보수집";
-            this.metroTabPage2.VerticalScrollbarBarColor = true;
-            // 
             // splitContainer1
             // 
             this.splitContainer1.BackColor = System.Drawing.Color.White;
@@ -114,14 +93,6 @@
             this.splitContainer1.SplitterDistance = 41;
             this.splitContainer1.TabIndex = 2;
             // 
-            // TxtSearchItem
-            // 
-            this.TxtSearchItem.Location = new System.Drawing.Point(856, 6);
-            this.TxtSearchItem.Name = "TxtSearchItem";
-            this.TxtSearchItem.Size = new System.Drawing.Size(250, 30);
-            this.TxtSearchItem.Style = MetroFramework.MetroColorStyle.Blue;
-            this.TxtSearchItem.TabIndex = 0;
-            // 
             // BtnSearch
             // 
             this.BtnSearch.Location = new System.Drawing.Point(1112, 3);
@@ -130,6 +101,15 @@
             this.BtnSearch.TabIndex = 1;
             this.BtnSearch.Text = "Search";
             this.BtnSearch.Click += new System.EventHandler(this.BtnSearch_Click);
+            // 
+            // TxtSearchItem
+            // 
+            this.TxtSearchItem.Location = new System.Drawing.Point(856, 6);
+            this.TxtSearchItem.Name = "TxtSearchItem";
+            this.TxtSearchItem.Size = new System.Drawing.Size(250, 30);
+            this.TxtSearchItem.Style = MetroFramework.MetroColorStyle.Blue;
+            this.TxtSearchItem.TabIndex = 0;
+            this.TxtSearchItem.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtSearchItem_KeyPress);
             // 
             // DgvStocks
             // 
@@ -189,6 +169,27 @@
             this.SHOTNISIN.Name = "SHOTNISIN";
             this.SHOTNISIN.ReadOnly = true;
             this.SHOTNISIN.Width = 150;
+            // 
+            // metroTabPage2
+            // 
+            this.metroTabPage2.HorizontalScrollbarBarColor = true;
+            this.metroTabPage2.Location = new System.Drawing.Point(4, 36);
+            this.metroTabPage2.Name = "metroTabPage2";
+            this.metroTabPage2.Size = new System.Drawing.Size(1226, 548);
+            this.metroTabPage2.TabIndex = 1;
+            this.metroTabPage2.Text = "해당정보수집";
+            this.metroTabPage2.VerticalScrollbarBarColor = true;
+            // 
+            // MtlBack
+            // 
+            this.MtlBack.Location = new System.Drawing.Point(1197, 657);
+            this.MtlBack.Name = "MtlBack";
+            this.MtlBack.Size = new System.Drawing.Size(60, 40);
+            this.MtlBack.TabIndex = 2;
+            this.MtlBack.TileImage = global::MyStockAdvisor.Properties.Resources.back2;
+            this.MtlBack.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.MtlBack.UseTileImage = true;
+            this.MtlBack.Click += new System.EventHandler(this.MtlBack_Click);
             // 
             // SearchItemForm
             // 

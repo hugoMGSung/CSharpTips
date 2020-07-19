@@ -1,21 +1,18 @@
 ﻿using MetroFramework.Forms;
-using MetroSet_UI.Forms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Xml;
+using MyStockAdvisor.SubScreen;
 
 namespace MyStockAdvisor
 {
     public partial class SearchItemForm : MetroForm // MetroSetForm
     {
+        LoadingForm form;
+
         public SearchItemForm()
         {
             InitializeComponent();
@@ -24,7 +21,6 @@ namespace MyStockAdvisor
         private void MtlBack_Click(object sender, EventArgs e)
         {
             this.Visible = false;
-
 
             MainForm main = new MainForm();
             main.Location = this.Location;
@@ -36,6 +32,9 @@ namespace MyStockAdvisor
         private void SearchItemForm_Load(object sender, EventArgs e)
         {
             DgvStocks.Font = new Font(@"NanumGothic", 9, FontStyle.Regular);
+            TxtSearchItem.ImeMode = ImeMode.Hangul;
+            // BackgroundWorker
+            TxtSearchItem.Focus();            
         }
 
         /// <summary>
@@ -45,11 +44,39 @@ namespace MyStockAdvisor
         /// <param name="e"></param>
         private void BtnSearch_Click(object sender, EventArgs e)
         {
-            WebClient wc = null;
-            XmlDocument doc = null;
+            if (string.IsNullOrEmpty(TxtSearchItem.Text))
+            {
+                MessageBox.Show("검색어를 입력하세요");
+                return;
+            }
 
-            wc = new WebClient() { Encoding = Encoding.UTF8 };
-            doc = new XmlDocument();
+            // 비동기 시작
+            WebClient wc = new WebClient() { Encoding = Encoding.UTF8 };
+            XmlDocument doc = new XmlDocument();
+
+            wc.DownloadStringCompleted += (send, arg) =>
+            {
+                form.Close();
+                //MessageBox.Show();
+                doc.LoadXml(arg.Result);
+
+                XmlElement root = doc.DocumentElement;
+                XmlNodeList items = doc.GetElementsByTagName("item");
+
+                DgvStocks.Rows.Clear();
+
+                foreach (XmlNode item in items)
+                {
+                    DgvStocks.Rows.Add(
+                        item["isin"] == null ? "" : item["isin"].InnerText, 
+                        item["issuDt"] == null ? "" : item["issuDt"].InnerText,
+                        item["korSecnNm"] == null ? "" : item["korSecnNm"].InnerText, 
+                        item["secnKacdNm"] == null ? "" : item["secnKacdNm"].InnerText, 
+                        item["shotnIsin"] == null ? "" : item["shotnIsin"].InnerText);
+                }
+
+                DgvStocks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
+            };
 
             StringBuilder str = new StringBuilder();
             str.Append("http://api.seibro.or.kr/openapi/service/StockSvc/getStkIsinByNmN1");
@@ -58,22 +85,20 @@ namespace MyStockAdvisor
             str.Append("&pageNo=1");//페이지 수
             str.Append("&numOfRows=200");//읽어올 데이터 수
             str.Append("&martTpcd=11");//주식시장종류 : 11은 유가증권시장
-            
-            string xml = wc.DownloadString(str.ToString());
-            doc.LoadXml(xml);
 
-            XmlElement root = doc.DocumentElement;
-            XmlNodeList items = doc.GetElementsByTagName("item");
+            wc.DownloadStringAsync(new Uri(str.ToString()));
+            TxtSearchItem.Text = string.Empty;
 
-            DgvStocks.Rows.Clear();
+            form = new LoadingForm();
+            form.ShowDialog();
+        }
 
-            foreach (XmlNode item in items)
+        private void TxtSearchItem_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13)
             {
-                DgvStocks.Rows.Add(item["isin"].InnerText, item["issuDt"].InnerText, 
-                    item["korSecnNm"].InnerText, item["secnKacdNm"].InnerText, item["shotnIsin"].InnerText);
+                BtnSearch_Click(sender, new EventArgs());
             }
-
-            DgvStocks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells;
         }
     }
 }
